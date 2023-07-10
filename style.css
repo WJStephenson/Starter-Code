@@ -9,6 +9,10 @@
   --secondary-bg: #1a0725;
 }
 
+* {
+  transition: all 0.3s ease-in-out;
+}
+
 html,
 body {
   font-family: "Poppins", sans-serif;
@@ -62,10 +66,23 @@ footer {
   box-shadow: 1px 1px 10px var(--primary-bg);
 }
 
-footer i {
+footer>i {
   color: var(--primary-text);
   font-size: 1.5rem;
   cursor: pointer;
+}
+
+/* styling for the theme button */
+
+#theme-button {
+  color: var(--primary-text);
+  font-size: 1.5rem;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  right: 45px;
+  top: calc(45px - 1.5rem / 2);
 }
 
 /* hover and click animations for anchors and icons */
