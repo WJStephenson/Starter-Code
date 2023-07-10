@@ -9,6 +9,10 @@ const lightColors = [`#ff8a00`,
     `#fff`,
     `#fff`,
     `#E6E6E6`];
+const colorVariables = [`--primary-text`,
+    `--secondary-text`,
+    `--primary-bg`,
+    `--secondary-bg`];
 
 button.addEventListener('click', () => {
     setTheme();
@@ -29,30 +33,29 @@ window.addEventListener('load', () => {
 function setTheme() {
     let mode = sessionStorage.getItem('mode');
     if (mode === 'dark') {
-        console.log('currently dark, switching to light');
         setLightMode();
     } else {
-        console.log('currently light, switching to dark');
         setDarkMode();
     }
 }
 
 function setDarkMode() {
-    console.log('setting dark');
     sessionStorage.setItem('mode', 'dark');
-    document.documentElement.style.setProperty('--primary-text', darkColors[0]);
-    document.documentElement.style.setProperty('--secondary-text', darkColors[1]);
-    document.documentElement.style.setProperty('--primary-bg', darkColors[2]);
-    document.documentElement.style.setProperty('--secondary-bg', darkColors[3]);
     button.innerHTML = darkModeIcon;
+    for(let i = 0; i < darkColors.length; i++) {
+        setStyleProperty(colorVariables[i], darkColors[i]);
+    };
 }
 
+
 function setLightMode() {
-    console.log('setting light');
     sessionStorage.setItem('mode', 'light');
-    document.documentElement.style.setProperty('--primary-text', lightColors[0]);
-    document.documentElement.style.setProperty('--secondary-text', lightColors[1]);
-    document.documentElement.style.setProperty('--primary-bg', lightColors[2]);
-    document.documentElement.style.setProperty('--secondary-bg', lightColors[3]);
     button.innerHTML = lightModeIcon;
+    for(let i = 0; i < lightColors.length; i++) {
+        setStyleProperty(colorVariables[i], lightColors[i]);
+    };
+}
+
+function setStyleProperty(property, color) {
+    document.documentElement.style.setProperty(property, color);
 }
